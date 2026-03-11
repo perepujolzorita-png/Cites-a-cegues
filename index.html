@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Citas a Ciegas — Tu Perfil</title>
+<title>Cites a Cegues — El teu Perfil</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FAF7F2;
-    --warm: #F2EDE4;
     --blush: #E8C4B8;
     --rose: #C97B6C;
     --burgundy: #8B3A3A;
@@ -17,40 +16,53 @@
     --muted: #8B7355;
     --border: #D4C4B0;
     --white: #FFFFFF;
-    --green: #3A7A5A;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
   .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--rose), var(--burgundy)); transition: width 0.5s cubic-bezier(.4,0,.2,1); z-index: 100; }
+
   .header { text-align: center; padding: 56px 24px 32px; max-width: 600px; margin: 0 auto; }
   .header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 16px; }
   .header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 6vw, 52px); font-weight: 300; line-height: 1.1; color: var(--deep); margin-bottom: 16px; }
   .header h1 em { font-style: italic; color: var(--rose); }
   .header p { color: var(--muted); font-size: 14px; max-width: 420px; margin: 0 auto; }
+
   .section { max-width: 600px; margin: 0 auto 8px; padding: 0 20px; display: none; animation: fadeSlideIn 0.4s ease forwards; }
   .section.active { display: block; }
   @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
   .section-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); margin-bottom: 6px; }
   .section-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: var(--deep); margin-bottom: 28px; }
   .section-title em { font-style: italic; }
+
   .card { background: var(--white); border-radius: 16px; border: 1px solid var(--border); padding: 28px; margin-bottom: 16px; }
   .field { margin-bottom: 24px; }
   .field:last-child { margin-bottom: 0; }
   .field-label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+
   .badge { display: inline-block; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
   .badge-hard { background: #FDE8E8; color: var(--burgundy); }
   .badge-scoring { background: #EDF4FF; color: #3B6CB7; }
-  input[type="text"], input[type="number"], input[type="tel"], select, textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s; outline: none; appearance: none; }
-  input:focus, select:focus, textarea:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(201,123,108,0.12); background: var(--white); }
+
+  input[type="text"], input[type="number"], input[type="tel"], textarea {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text);
+    background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+  }
+  input:focus, textarea:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(201,123,108,0.12); background: var(--white); }
   textarea { resize: vertical; min-height: 80px; }
+
   .range-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .range-row input { text-align: center; }
+
   .option-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .option-pill { position: relative; cursor: pointer; }
   .option-pill input { position: absolute; opacity: 0; width: 0; height: 0; }
   .option-pill span { display: inline-block; padding: 8px 16px; border-radius: 100px; border: 1.5px solid var(--border); font-size: 13px; color: var(--muted); background: var(--cream); cursor: pointer; transition: all 0.18s ease; user-select: none; white-space: nowrap; }
   .option-pill input:checked + span { background: var(--rose); border-color: var(--rose); color: white; font-weight: 500; }
   .option-pill span:hover { border-color: var(--rose); color: var(--rose); }
+
   .scale-group { display: grid; gap: 14px; }
   .scale-item-label { font-size: 13px; color: var(--text); margin-bottom: 8px; }
   .scale-pills { display: flex; gap: 6px; }
@@ -60,6 +72,7 @@
   .scale-pill input:checked + span { background: var(--burgundy); border-color: var(--burgundy); color: white; }
   .scale-pill span:hover { border-color: var(--rose); }
   .scale-labels { display: flex; justify-content: space-between; margin-top: 4px; font-size: 10px; color: var(--muted); }
+
   .nav-area { max-width: 600px; margin: 0 auto; padding: 24px 20px 48px; display: flex; gap: 12px; align-items: center; }
   .btn { padding: 14px 28px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; outline: none; }
   .btn-primary { background: linear-gradient(135deg, var(--rose), var(--burgundy)); color: white; flex: 1; box-shadow: 0 4px 20px rgba(139,58,58,0.25); }
@@ -67,124 +80,59 @@
   .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   .btn-secondary { background: transparent; color: var(--muted); border: 1.5px solid var(--border); padding: 14px 20px; }
   .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
   .step-indicator { max-width: 600px; margin: 0 auto 20px; padding: 0 20px; display: flex; align-items: center; gap: 6px; }
   .step-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); transition: all 0.3s; }
   .step-dot.active { background: var(--rose); width: 20px; border-radius: 3px; }
   .step-dot.done { background: var(--burgundy); opacity: 0.4; }
   .step-text { margin-left: auto; font-size: 12px; color: var(--muted); }
+
   .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
   .success-screen { display: none; text-align: center; padding: 60px 24px; max-width: 480px; margin: 0 auto; animation: fadeSlideIn 0.5s ease forwards; }
   .success-screen.active { display: block; }
   .success-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--blush), var(--rose)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 32px; }
   .success-screen h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--deep); margin-bottom: 12px; }
   .success-screen p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
   .upload-area { border: 2px dashed var(--border); border-radius: 12px; padding: 32px 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--cream); }
   .upload-area:hover { border-color: var(--rose); background: rgba(232,196,184,0.08); }
   .upload-icon { font-size: 28px; margin-bottom: 8px; }
   .upload-area p { font-size: 13px; color: var(--muted); margin-bottom: 4px; }
   .upload-area small { font-size: 11px; color: var(--border); }
   .upload-area input[type="file"] { display: none; }
-  .note { font-size: 12px; color: var(--muted); margin-top: 6px; font-style: italic; }
-  .select-wrapper { position: relative; }
-  .select-wrapper::after { content: '↓'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 12px; }
 
-  /* ── SENDING OVERLAY ── */
-  .sending-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(44,24,16,0.6);
-    backdrop-filter: blur(6px);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 16px;
-  }
+  .sending-overlay { display: none; position: fixed; inset: 0; background: rgba(44,24,16,0.6); backdrop-filter: blur(6px); z-index: 200; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
   .sending-overlay.active { display: flex; }
-  .spinner {
-    width: 48px; height: 48px;
-    border: 3px solid rgba(255,255,255,0.2);
-    border-top-color: var(--blush);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
+  .spinner { width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--blush); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .sending-overlay p { color: white; font-size: 14px; opacity: 0.85; }
 
-  /* ── ERROR BANNER ── */
-  .error-banner {
-    display: none;
-    background: #FDE8E8;
-    border: 1px solid #F5C6C6;
-    border-radius: 12px;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: var(--burgundy);
-    margin: 0 20px 16px;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  .error-banner { display: none; background: #FDE8E8; border: 1px solid #F5C6C6; border-radius: 12px; padding: 14px 18px; font-size: 13px; color: var(--burgundy); margin: 0 auto 16px; max-width: 560px; }
   .error-banner.active { display: block; }
-
-  /* ── CONFIG BANNER ── */
-  .config-banner {
-    background: #FFF8E1;
-    border: 1.5px solid #FFD54F;
-    border-radius: 12px;
-    padding: 16px 20px;
-    font-size: 13px;
-    color: #5D4037;
-    margin: 0 20px 20px;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-  }
-  .config-banner strong { display: block; margin-bottom: 4px; font-size: 14px; }
-  .config-banner code { background: rgba(0,0,0,0.08); padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace; }
 </style>
 </head>
 <body>
 
-<!-- ══ CONFIGURACIÓN — CAMBIA ESTA URL ══ -->
-<script>
-  // ① Despliega tu Apps Script como Web App
-  // ② Copia la URL aquí
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzwvscHe4-zu1pA_aNxCF-Uh18UwHJo6X1H68GtaosM6c4n_ayFB8VNhPbtVJmcB_b-/exec";
-  
-  // Detecta si todavía es la URL de ejemplo
-  const IS_CONFIGURED = !APPS_SCRIPT_URL.includes("TU_DEPLOYMENT_ID");
-</script>
+<div class="progress-bar" id="progressBar" style="width:12.5%"></div>
 
-<!-- Config warning -->
-<div class="config-banner" id="configBanner">
-  <strong>⚙️ Paso final: conecta tu endpoint</strong>
-  Edita la variable <code>APPS_SCRIPT_URL</code> en este HTML con la URL de tu Web App de Google Apps Script. 
-  Sigue las instrucciones del archivo <code>apps-script-backend.gs</code>.
-</div>
-
-<div class="progress-bar" id="progressBar" style="width: 12.5%"></div>
-
-<!-- SENDING OVERLAY -->
 <div class="sending-overlay" id="sendingOverlay">
   <div class="spinner"></div>
-  <p>Guardando tu perfil…</p>
+  <p>Guardant el teu perfil…</p>
 </div>
 
-<!-- ERROR BANNER -->
 <div class="error-banner" id="errorBanner">
-  ⚠️ <span id="errorMsg">Hubo un problema enviando tu perfil. Inténtalo de nuevo.</span>
+  ⚠️ <span id="errorMsg"></span>
 </div>
 
-<!-- HEADER -->
+<!-- CAPÇALERA -->
 <div class="header" id="mainHeader">
-  <div class="header-eyebrow">✦ Citas a Ciegas Barcelona</div>
-  <h1>Tu <em>historia</em><br>empieza aquí</h1>
-  <p>5–10 minutos. Sin filtros. La personalidad es lo que enamora.</p>
+  <div class="header-eyebrow">✦ Cites a Cegues Barcelona</div>
+  <h1>La teva <em>història</em><br>comença aquí</h1>
+  <p>5–10 minuts. Sense filtres. La personalitat és el que enamora.</p>
 </div>
 
-<!-- STEP INDICATOR -->
+<!-- INDICADOR DE PAS -->
 <div class="step-indicator" id="stepIndicator">
   <div class="step-dot active" id="dot-0"></div>
   <div class="step-dot" id="dot-1"></div>
@@ -194,172 +142,166 @@
   <div class="step-dot" id="dot-5"></div>
   <div class="step-dot" id="dot-6"></div>
   <div class="step-dot" id="dot-7"></div>
-  <span class="step-text" id="stepText">Paso 1 de 8</span>
+  <span class="step-text" id="stepText">Pas 1 de 8</span>
 </div>
 
-<!-- ── A: IDENTIDAD ── -->
+<!-- ── A: IDENTITAT ── -->
 <div class="section active" id="sec-0">
-  <div class="section-label">A · Identidad</div>
-  <div class="section-title">Cuéntanos quién eres</div>
+  <div class="section-label">A · Identitat</div>
+  <div class="section-title">Explica'ns qui ets</div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Nombre y apellidos</label>
-      <input type="text" id="nombre" placeholder="Tu nombre completo">
+      <label class="field-label">Nom i cognoms</label>
+      <input type="text" id="nombre" placeholder="El teu nom complet">
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">WhatsApp <span class="badge badge-hard">obligatorio</span></label>
+      <label class="field-label">WhatsApp <span class="badge badge-hard">obligatori</span></label>
       <input type="tel" id="whatsapp" placeholder="+34 XXX XXX XXX">
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Edad <span class="badge badge-hard">filtro</span></label>
-      <input type="number" id="edad" placeholder="Tu edad" min="18" max="99">
+      <label class="field-label">Edat <span class="badge badge-hard">filtre</span></label>
+      <input type="number" id="edad" placeholder="La teva edat" min="18" max="99">
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Ciudad de residencia <span class="badge badge-scoring">afinidad</span></label>
-      <div class="select-wrapper">
-        <select id="ciudad">
-          <option value="">— Selecciona —</option>
-          <option>Barcelona</option><option>Sant Cugat</option><option>Badalona</option>
-          <option>Hospitalet</option><option>Terrassa</option><option>Sabadell</option>
-          <option>Gavà</option><option>Castelldefels</option><option>Otra</option>
-        </select>
+      <label class="field-label">Ciutat de residència <span class="badge badge-scoring">afinitat</span></label>
+      <input type="text" id="ciudad" placeholder="On vius? (ex: Barcelona, Gràcia...)">
+    </div>
+  </div>
+  <div class="card">
+    <div class="field">
+      <label class="field-label">Gènere <span class="badge badge-hard">filtre</span></label>
+      <div class="option-grid">
+        <label class="option-pill"><input type="radio" name="genero" value="Home"><span>Home</span></label>
+        <label class="option-pill"><input type="radio" name="genero" value="Dona"><span>Dona</span></label>
+        <label class="option-pill"><input type="radio" name="genero" value="No binari"><span>No binari</span></label>
+        <label class="option-pill"><input type="radio" name="genero" value="Prefereixo no dir-ho"><span>Prefereixo no dir-ho</span></label>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="field">
+      <label class="field-label">Amb quins gèneres t'agradaria tenir cita? <span class="badge badge-hard">filtre</span></label>
+      <div class="option-grid">
+        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Homes"><span>Homes</span></label>
+        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Dones"><span>Dones</span></label>
+        <label class="option-pill"><input type="checkbox" name="busca_genero" value="No binari"><span>No binari</span></label>
+        <label class="option-pill"><input type="checkbox" name="busca_genero" value="M'és indiferent"><span>M'és indiferent</span></label>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Género <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Ocupació <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="genero" value="Hombre"><span>Hombre</span></label>
-        <label class="option-pill"><input type="radio" name="genero" value="Mujer"><span>Mujer</span></label>
-        <label class="option-pill"><input type="radio" name="genero" value="No binario"><span>No binario</span></label>
-        <label class="option-pill"><input type="radio" name="genero" value="Prefiero no decirlo"><span>Prefiero no decirlo</span></label>
+        <label class="option-pill"><input type="radio" name="ocupacion" value="Estudiant"><span>Estudiant</span></label>
+        <label class="option-pill"><input type="radio" name="ocupacion" value="Empleat/da"><span>Empleat/da</span></label>
+        <label class="option-pill"><input type="radio" name="ocupacion" value="Emprenent"><span>Emprenent</span></label>
+        <label class="option-pill"><input type="radio" name="ocupacion" value="Entre feines"><span>Entre feines</span></label>
+        <label class="option-pill"><input type="radio" name="ocupacion" value="Altre"><span>Altre</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">¿Con qué géneros te gustaría tener cita? <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Idiomes <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Hombres"><span>Hombres</span></label>
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Mujeres"><span>Mujeres</span></label>
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="No binario"><span>No binario</span></label>
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Me es indiferente"><span>Me es indiferente</span></label>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="field">
-      <label class="field-label">Ocupación <span class="badge badge-scoring">afinidad</span></label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="ocupacion" value="Estudiante"><span>Estudiante</span></label>
-        <label class="option-pill"><input type="radio" name="ocupacion" value="Empleado/a"><span>Empleado/a</span></label>
-        <label class="option-pill"><input type="radio" name="ocupacion" value="Emprendiendo"><span>Emprendiendo</span></label>
-        <label class="option-pill"><input type="radio" name="ocupacion" value="Entre trabajos"><span>Entre trabajos</span></label>
-        <label class="option-pill"><input type="radio" name="ocupacion" value="Otro"><span>Otro</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
-      <label class="field-label">Idiomas <span class="badge badge-scoring">afinidad</span></label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Español"><span>Español</span></label>
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Catalán"><span>Catalán</span></label>
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Inglés"><span>Inglés</span></label>
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Francés"><span>Francés</span></label>
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Italiano"><span>Italiano</span></label>
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Alemán"><span>Alemán</span></label>
-        <label class="option-pill"><input type="checkbox" name="idiomas" value="Otro"><span>Otro</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Espanyol"><span>Espanyol</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Català"><span>Català</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Anglès"><span>Anglès</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Francès"><span>Francès</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Italià"><span>Italià</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Alemany"><span>Alemany</span></label>
+        <label class="option-pill"><input type="checkbox" name="idiomas" value="Altre"><span>Altre</span></label>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── B: ESTILO DE VIDA ── -->
+<!-- ── B: ESTIL DE VIDA ── -->
 <div class="section" id="sec-1">
-  <div class="section-label">B · Estilo de vida</div>
-  <div class="section-title">¿Cómo es tu día a día?</div>
+  <div class="section-label">B · Estil de vida</div>
+  <div class="section-title">Com és el teu dia a dia?</div>
   <div class="card">
     <div class="field">
-      <label class="field-label">¿Fumas? <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Fumes? <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="fuma" value="Sí"><span>Sí</span></label>
-        <label class="option-pill"><input type="radio" name="fuma" value="Ocasionalmente"><span>Ocasionalmente</span></label>
+        <label class="option-pill"><input type="radio" name="fuma" value="De vegades"><span>De vegades</span></label>
         <label class="option-pill"><input type="radio" name="fuma" value="No"><span>No</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">¿Te importa que la otra persona fume? <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">T'importa que l'altra persona fumi? <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="importa_fuma" value="Solo no fumadores"><span>Solo no fumadores</span></label>
-        <label class="option-pill"><input type="radio" name="importa_fuma" value="Ocasional OK"><span>Ocasional OK</span></label>
-        <label class="option-pill"><input type="radio" name="importa_fuma" value="Me da igual"><span>Me da igual</span></label>
+        <label class="option-pill"><input type="radio" name="importa_fuma" value="Només no fumadors"><span>Només no fumadors</span></label>
+        <label class="option-pill"><input type="radio" name="importa_fuma" value="De vegades OK"><span>De vegades OK</span></label>
+        <label class="option-pill"><input type="radio" name="importa_fuma" value="M'és igual"><span>M'és igual</span></label>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">¿Bebes alcohol? <span class="badge badge-scoring">afinidad</span></label>
+      <label class="field-label">Beus alcohol? <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="bebe" value="Sí"><span>Sí</span></label>
-        <label class="option-pill"><input type="radio" name="bebe" value="Ocasionalmente"><span>Ocasionalmente</span></label>
+        <label class="option-pill"><input type="radio" name="bebe" value="De vegades"><span>De vegades</span></label>
         <label class="option-pill"><input type="radio" name="bebe" value="No"><span>No</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">¿Te importa que la otra persona beba? <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">T'importa que l'altra persona begui? <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="importa_bebe" value="Solo no bebedores"><span>Solo no bebedores</span></label>
-        <label class="option-pill"><input type="radio" name="importa_bebe" value="Ocasional OK"><span>Ocasional OK</span></label>
-        <label class="option-pill"><input type="radio" name="importa_bebe" value="Me da igual"><span>Me da igual</span></label>
+        <label class="option-pill"><input type="radio" name="importa_bebe" value="Només no begudors"><span>Només no begudors</span></label>
+        <label class="option-pill"><input type="radio" name="importa_bebe" value="De vegades OK"><span>De vegades OK</span></label>
+        <label class="option-pill"><input type="radio" name="importa_bebe" value="M'és igual"><span>M'és igual</span></label>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Frecuencia de ejercicio <span class="badge badge-scoring">afinidad</span></label>
+      <label class="field-label">Freqüència d'exercici <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="ejercicio" value="4+ días/semana"><span>4+ días/semana</span></label>
-        <label class="option-pill"><input type="radio" name="ejercicio" value="2–3 días/semana"><span>2–3 días/semana</span></label>
-        <label class="option-pill"><input type="radio" name="ejercicio" value="1 día/semana"><span>1 día/semana</span></label>
-        <label class="option-pill"><input type="radio" name="ejercicio" value="Casi nunca"><span>Casi nunca</span></label>
+        <label class="option-pill"><input type="radio" name="ejercicio" value="4+ dies/setmana"><span>4+ dies/setmana</span></label>
+        <label class="option-pill"><input type="radio" name="ejercicio" value="2–3 dies/setmana"><span>2–3 dies/setmana</span></label>
+        <label class="option-pill"><input type="radio" name="ejercicio" value="1 dia/setmana"><span>1 dia/setmana</span></label>
+        <label class="option-pill"><input type="radio" name="ejercicio" value="Gairebé mai"><span>Gairebé mai</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Plan típico de finde <span class="badge badge-scoring">afinidad</span></label>
+      <label class="field-label">Pla típic de cap de setmana <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="finde" value="Social"><span>Social / fiesta</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Plan tranqui"><span>Plan tranqui</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Naturaleza-deporte"><span>Naturaleza</span></label>
+        <label class="option-pill"><input type="radio" name="finde" value="Social"><span>Social / festa</span></label>
+        <label class="option-pill"><input type="radio" name="finde" value="Pla tranquil"><span>Pla tranquil</span></label>
+        <label class="option-pill"><input type="radio" name="finde" value="Natura-esport"><span>Natura / esport</span></label>
         <label class="option-pill"><input type="radio" name="finde" value="Cultura"><span>Cultura</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Improvisado"><span>Improvisado</span></label>
+        <label class="option-pill"><input type="radio" name="finde" value="Improvisat"><span>Improvisat</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Tu ritmo <span class="badge badge-scoring">afinidad</span></label>
+      <label class="field-label">El teu ritme <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="ritmo" value="Muy diurno"><span>🌅 Muy diurno</span></label>
+        <label class="option-pill"><input type="radio" name="ritmo" value="Molt diürn"><span>🌅 Molt diürn</span></label>
         <label class="option-pill"><input type="radio" name="ritmo" value="Flexible"><span>⚖️ Flexible</span></label>
-        <label class="option-pill"><input type="radio" name="ritmo" value="Muy nocturno"><span>🌙 Muy nocturno</span></label>
+        <label class="option-pill"><input type="radio" name="ritmo" value="Molt nocturn"><span>🌙 Molt nocturn</span></label>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── C: PERSONALIDAD ── -->
+<!-- ── C: PERSONALITAT ── -->
 <div class="section" id="sec-2">
-  <div class="section-label">C · Personalidad</div>
-  <div class="section-title">Puntúate del 1 al 5</div>
+  <div class="section-label">C · Personalitat</div>
+  <div class="section-title">Puntua't de l'1 al 5</div>
   <div class="card">
     <div class="scale-group">
+
       <div class="scale-item">
-        <div class="scale-item-label">Me gusta conocer gente nueva</div>
+        <div class="scale-item-label">M'agrada conèixer gent nova</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p1" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p1" value="2"><span>2</span></label>
@@ -367,11 +309,12 @@
           <label class="scale-pill"><input type="radio" name="p1" value="4"><span>4</span></label>
           <label class="scale-pill"><input type="radio" name="p1" value="5"><span>5</span></label>
         </div>
-        <div class="scale-labels"><span>Nada</span><span>Neutral</span><span>Totalmente</span></div>
+        <div class="scale-labels"><span>Gens</span><span>Neutral</span><span>Totalment</span></div>
       </div>
       <div class="divider"></div>
+
       <div class="scale-item">
-        <div class="scale-item-label">Prefiero planificar antes que improvisar</div>
+        <div class="scale-item-label">Prefereixo planificar abans que improvisar</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p2" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p2" value="2"><span>2</span></label>
@@ -382,8 +325,9 @@
         <div class="scale-labels"><span>Improviso</span><span>Neutral</span><span>Planifico</span></div>
       </div>
       <div class="divider"></div>
+
       <div class="scale-item">
-        <div class="scale-item-label">Soy directo/a comunicando lo que pienso</div>
+        <div class="scale-item-label">Sóc directe/a comunicant el que penso</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p3" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p3" value="2"><span>2</span></label>
@@ -391,11 +335,12 @@
           <label class="scale-pill"><input type="radio" name="p3" value="4"><span>4</span></label>
           <label class="scale-pill"><input type="radio" name="p3" value="5"><span>5</span></label>
         </div>
-        <div class="scale-labels"><span>Reservado</span><span>Neutral</span><span>Muy directo</span></div>
+        <div class="scale-labels"><span>Reservat/da</span><span>Neutral</span><span>Molt directe/a</span></div>
       </div>
       <div class="divider"></div>
+
       <div class="scale-item">
-        <div class="scale-item-label">Gestiono bien el conflicto (sin drama)</div>
+        <div class="scale-item-label">Gestiono bé el conflicte (sense drama)</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p4" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p4" value="2"><span>2</span></label>
@@ -403,11 +348,12 @@
           <label class="scale-pill"><input type="radio" name="p4" value="4"><span>4</span></label>
           <label class="scale-pill"><input type="radio" name="p4" value="5"><span>5</span></label>
         </div>
-        <div class="scale-labels"><span>Lo evito</span><span>Neutral</span><span>Lo gestiono</span></div>
+        <div class="scale-labels"><span>Ho evito</span><span>Neutral</span><span>Ho gestiono</span></div>
       </div>
       <div class="divider"></div>
+
       <div class="scale-item">
-        <div class="scale-item-label">Me considero una persona afectuosa</div>
+        <div class="scale-item-label">Em considero una persona afectuosa</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p5" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p5" value="2"><span>2</span></label>
@@ -415,11 +361,12 @@
           <label class="scale-pill"><input type="radio" name="p5" value="4"><span>4</span></label>
           <label class="scale-pill"><input type="radio" name="p5" value="5"><span>5</span></label>
         </div>
-        <div class="scale-labels"><span>Reservado</span><span>Neutral</span><span>Muy afectuoso</span></div>
+        <div class="scale-labels"><span>Reservat/da</span><span>Neutral</span><span>Molt afectuós/a</span></div>
       </div>
       <div class="divider"></div>
+
       <div class="scale-item">
-        <div class="scale-item-label">Busco conversaciones profundas (no solo small talk)</div>
+        <div class="scale-item-label">Busco converses profundes (no només small talk)</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p6" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p6" value="2"><span>2</span></label>
@@ -427,90 +374,80 @@
           <label class="scale-pill"><input type="radio" name="p6" value="4"><span>4</span></label>
           <label class="scale-pill"><input type="radio" name="p6" value="5"><span>5</span></label>
         </div>
-        <div class="scale-labels"><span>Ligero</span><span>Neutral</span><span>Profundas</span></div>
+        <div class="scale-labels"><span>Lleuger</span><span>Neutral</span><span>Profundes</span></div>
       </div>
+
     </div>
   </div>
 </div>
 
-<!-- ── D: QUÉ BUSCAS ── -->
+<!-- ── D: QUÈ BUSQUES ── -->
 <div class="section" id="sec-3">
-  <div class="section-label">D · Lo que buscas</div>
-  <div class="section-title">Seamos honestos</div>
+  <div class="section-label">D · El que busques</div>
+  <div class="section-title">Siguem honestos</div>
   <div class="card">
     <div class="field">
-      <label class="field-label">¿Qué buscas ahora mismo? <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Què busques ara mateix? <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="busca" value="Relación seria"><span>Relación seria</span></label>
-        <label class="option-pill"><input type="radio" name="busca" value="Algo casual"><span>Algo casual</span></label>
-        <label class="option-pill"><input type="radio" name="busca" value="Lo que surja"><span>Lo que surja (honestamente)</span></label>
+        <label class="option-pill"><input type="radio" name="busca" value="Relació seriosa"><span>Relació seriosa</span></label>
+        <label class="option-pill"><input type="radio" name="busca" value="Alguna cosa casual"><span>Alguna cosa casual</span></label>
+        <label class="option-pill"><input type="radio" name="busca" value="El que sorgeixi"><span>El que sorgeixi (honestament)</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Rango de edad <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Rang d'edat que t'encaixa <span class="badge badge-hard">filtre</span></label>
       <div class="range-row">
         <input type="number" id="edad_min" placeholder="Mín." min="18" max="99">
-        <input type="number" id="edad_max" placeholder="Máx." min="18" max="99">
+        <input type="number" id="edad_max" placeholder="Màx." min="18" max="99">
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Distancia <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Distància <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="distancia" value="Misma ciudad"><span>Misma ciudad</span></label>
-        <label class="option-pill"><input type="radio" name="distancia" value="Cerca (≤30 min)"><span>≤30 min</span></label>
-        <label class="option-pill"><input type="radio" name="distancia" value="Me desplazo"><span>Me desplazo</span></label>
-        <label class="option-pill"><input type="radio" name="distancia" value="Indiferente"><span>Indiferente</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
-      <label class="field-label">Hijos a futuro <span class="badge badge-hard">filtro</span></label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="hijos" value="Sí quiero"><span>Sí quiero</span></label>
-        <label class="option-pill"><input type="radio" name="hijos" value="No quiero"><span>No quiero</span></label>
-        <label class="option-pill"><input type="radio" name="hijos" value="Tal vez"><span>Tal vez</span></label>
-        <label class="option-pill"><input type="radio" name="hijos" value="Ya tengo / Me da igual"><span>Ya tengo / Me da igual</span></label>
-        <label class="option-pill"><input type="radio" name="hijos" value="Ya tengo / Sin más"><span>Ya tengo / Sin más</span></label>
+        <label class="option-pill"><input type="radio" name="distancia" value="Mateixa ciutat"><span>Mateixa ciutat</span></label>
+        <label class="option-pill"><input type="radio" name="distancia" value="A prop (≤30 min)"><span>A prop (≤30 min)</span></label>
+        <label class="option-pill"><input type="radio" name="distancia" value="Em desplaço"><span>Em desplaço</span></label>
+        <label class="option-pill"><input type="radio" name="distancia" value="Indiferent"><span>Indiferent</span></label>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Importancia de valores alineados <span class="badge badge-scoring">afinidad</span></label>
+      <label class="field-label">Importància de valors / ideologia alineada <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="valores" value="Muy importante"><span>Muy importante</span></label>
-        <label class="option-pill"><input type="radio" name="valores" value="Importante"><span>Importante</span></label>
-        <label class="option-pill"><input type="radio" name="valores" value="Poco"><span>Poco</span></label>
-        <label class="option-pill"><input type="radio" name="valores" value="Nada"><span>Nada</span></label>
+        <label class="option-pill"><input type="radio" name="valores" value="Molt important"><span>Molt important</span></label>
+        <label class="option-pill"><input type="radio" name="valores" value="Important"><span>Important</span></label>
+        <label class="option-pill"><input type="radio" name="valores" value="Poc"><span>Poc</span></label>
+        <label class="option-pill"><input type="radio" name="valores" value="Gens"><span>Gens</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">¿Qué valoras más en una pareja? <span class="badge badge-scoring">afinidad</span> <small style="color:var(--muted);font-size:11px">(hasta 3)</small></label>
+      <label class="field-label">Què valores més en una parella? <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(fins a 3)</small></label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="valora" value="Humor"><span>Humor</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Comunicación"><span>Comunicación</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Lealtad"><span>Lealtad</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Ambición"><span>Ambición</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Comunicació"><span>Comunicació</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Lleialtat"><span>Lleialtat</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Ambició"><span>Ambició</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Calma emocional"><span>Calma emocional</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Aventura"><span>Aventura</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Independencia"><span>Independencia</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Independència"><span>Independència</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Detallista"><span>Detallista</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Primera cita ideal <span class="badge badge-scoring">afinidad</span></label>
+      <label class="field-label">La teva primera cita ideal <span class="badge badge-scoring">afinitat</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="primera_cita" value="Café"><span>☕ Café</span></label>
-        <label class="option-pill"><input type="radio" name="primera_cita" value="Cena"><span>🍷 Cena</span></label>
-        <label class="option-pill"><input type="radio" name="primera_cita" value="Paseo"><span>🚶 Paseo</span></label>
+        <label class="option-pill"><input type="radio" name="primera_cita" value="Cafè"><span>☕ Cafè</span></label>
+        <label class="option-pill"><input type="radio" name="primera_cita" value="Sopar"><span>🍷 Sopar</span></label>
+        <label class="option-pill"><input type="radio" name="primera_cita" value="Passeig"><span>🚶 Passeig</span></label>
         <label class="option-pill"><input type="radio" name="primera_cita" value="Cultura"><span>🎨 Cultura</span></label>
-        <label class="option-pill"><input type="radio" name="primera_cita" value="Aire libre"><span>🌿 Aire libre</span></label>
-        <label class="option-pill"><input type="radio" name="primera_cita" value="Espontáneo"><span>⚡ Espontáneo</span></label>
+        <label class="option-pill"><input type="radio" name="primera_cita" value="Aire lliure"><span>🌿 Aire lliure</span></label>
+        <label class="option-pill"><input type="radio" name="primera_cita" value="Espontani"><span>⚡ Espontani</span></label>
       </div>
     </div>
   </div>
@@ -519,32 +456,32 @@
 <!-- ── E: DEALBREAKERS ── -->
 <div class="section" id="sec-4">
   <div class="section-label">E · Dealbreakers</div>
-  <div class="section-title">¿Qué no toleras? <em>Honestidad ante todo</em></div>
+  <div class="section-title">Què no toleres? <em>L'honestedat per davant</em></div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Redflags (hasta 5) <span class="badge badge-hard">filtro</span></label>
+      <label class="field-label">Banderes vermelles (fins a 5) <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Que fume"><span>🚬 Que fume</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Que beba a menudo"><span>🍺 Que beba a menudo</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Sin deporte"><span>🛋️ Sin deporte</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Que viva lejos"><span>📍 Que viva lejos</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Pegado al móvil"><span>📱 Pegado al móvil</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Muy activo en redes"><span>📸 Muy activo en redes</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que fumi"><span>🚬 Que fumi</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que begui sovint"><span>🍺 Que begui sovint</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Sense esport"><span>🛋️ Sense esport</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que visqui lluny"><span>📍 Que visqui lluny</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Enganxat al mòbil"><span>📱 Enganxat al mòbil</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt actiu a xarxes"><span>📸 Molt actiu a xarxes</span></label>
         <label class="option-pill"><input type="checkbox" name="redflag" value="Poca higiene"><span>🧼 Poca higiene</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="No curioso/a"><span>🧠 No curioso/a</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Mala comunicación"><span>💬 Mala comunicación</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Egoísta"><span>🎭 Egoísta</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Sin objetivos"><span>😴 Sin objetivos</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Actitudes machistas"><span>⚡ Actitudes machistas</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Muy intenso/a"><span>🌊 Muy intenso/a</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Muy inmaduro/a"><span>🎮 Muy inmaduro/a</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="No viaja"><span>✈️ No viaja</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="No curiós/a"><span>🧠 No curiós/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Mala comunicació"><span>💬 Mala comunicació</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Egoista"><span>🎭 Egoista</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Sense objectius"><span>😴 Sense objectius</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Actituds masclistes"><span>⚡ Actituds masclistes</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt intens/a"><span>🌊 Molt intens/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt immadur/a"><span>🎮 Molt immadur/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="No viatja"><span>✈️ No viatja</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Otro dealbreaker específico</label>
-      <textarea id="otro_dealbreaker" placeholder="(Opcional, máx. 200 caracteres)" maxlength="200"></textarea>
+      <label class="field-label">Un altre dealbreaker molt específic</label>
+      <textarea id="otro_dealbreaker" placeholder="(Opcional, màx. 200 caràcters)" maxlength="200"></textarea>
     </div>
   </div>
 </div>
@@ -552,88 +489,69 @@
 <!-- ── F: LOGÍSTICA ── -->
 <div class="section" id="sec-5">
   <div class="section-label">F · Logística</div>
-  <div class="section-title">Organizamos la cita</div>
+  <div class="section-title">Organitzem la cita</div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Días disponibles</label>
+      <label class="field-label">Dies disponibles</label>
       <div class="option-grid">
-        <label class="option-pill"><input type="checkbox" name="dias" value="L–J"><span>L–J</span></label>
-        <label class="option-pill"><input type="checkbox" name="dias" value="Viernes"><span>Viernes</span></label>
-        <label class="option-pill"><input type="checkbox" name="dias" value="Sábado"><span>Sábado</span></label>
-        <label class="option-pill"><input type="checkbox" name="dias" value="Domingo"><span>Domingo</span></label>
+        <label class="option-pill"><input type="checkbox" name="dias" value="Dl–Dj"><span>Dl–Dj</span></label>
+        <label class="option-pill"><input type="checkbox" name="dias" value="Divendres"><span>Divendres</span></label>
+        <label class="option-pill"><input type="checkbox" name="dias" value="Dissabte"><span>Dissabte</span></label>
+        <label class="option-pill"><input type="checkbox" name="dias" value="Diumenge"><span>Diumenge</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Franja horaria</label>
+      <label class="field-label">Franja horària preferida</label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="franja" value="Afterwork 18–20h"><span>Afterwork 18–20h</span></label>
-        <label class="option-pill"><input type="checkbox" name="franja" value="Cena 20–23h"><span>Cena 20–23h</span></label>
-        <label class="option-pill"><input type="checkbox" name="franja" value="Mediodía 12–16h"><span>Mediodía 12–16h</span></label>
-        <label class="option-pill"><input type="checkbox" name="franja" value="Tarde 16–19h"><span>Tarde 16–19h</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
-      <label class="field-label">Zona preferida</label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="zona_cita" value="Mi zona"><span>Mi zona</span></label>
-        <label class="option-pill"><input type="radio" name="zona_cita" value="Barcelona centro"><span>Barcelona centro</span></label>
-        <label class="option-pill"><input type="radio" name="zona_cita" value="Sant Cugat"><span>Sant Cugat</span></label>
-        <label class="option-pill"><input type="radio" name="zona_cita" value="Indiferente"><span>Indiferente</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
-      <label class="field-label">¿Restaurante colaborador?</label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="restaurante" value="Sí"><span>Sí, perfecto</span></label>
-        <label class="option-pill"><input type="radio" name="restaurante" value="Prefiero café/paseo"><span>Prefiero café/paseo</span></label>
-        <label class="option-pill"><input type="radio" name="restaurante" value="Me da igual"><span>Me da igual</span></label>
+        <label class="option-pill"><input type="checkbox" name="franja" value="Sopar 20–23h"><span>Sopar 20–23h</span></label>
+        <label class="option-pill"><input type="checkbox" name="franja" value="Migdia 12–16h"><span>Migdia 12–16h</span></label>
+        <label class="option-pill"><input type="checkbox" name="franja" value="Tarda 16–19h"><span>Tarda 16–19h</span></label>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── G: CONFIDENTE ── -->
+<!-- ── G: CONFIDENT ── -->
 <div class="section" id="sec-6">
-  <div class="section-label">G · Confidente</div>
-  <div class="section-title">Alguien de confianza</div>
+  <div class="section-label">G · Confident</div>
+  <div class="section-title">Algú de confiança</div>
   <div class="card">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6">Tu confidente recibirá el perfil de tu posible match y solo tendrá que decir <strong>SÍ o NO</strong>. Es la capa de seguridad de la cita a ciegas.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6">El teu confident rebrà el perfil del teu possible match i només haurà de dir <strong>SÍ o NO</strong>. És la capa de seguretat de la cita a cegues.</p>
     <div class="field">
-      <label class="field-label">Nombre del confidente</label>
-      <input type="text" id="confidente_nombre" placeholder="Nombre">
+      <label class="field-label">Nom del confident</label>
+      <input type="text" id="confidente_nombre" placeholder="Nom">
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Relación</label>
+      <label class="field-label">Relació</label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="confidente_rel" value="Mejor amigo/a"><span>Mejor amigo/a</span></label>
-        <label class="option-pill"><input type="radio" name="confidente_rel" value="Amigo/a"><span>Amigo/a</span></label>
-        <label class="option-pill"><input type="radio" name="confidente_rel" value="Hermano/a"><span>Hermano/a</span></label>
-        <label class="option-pill"><input type="radio" name="confidente_rel" value="Primo/a"><span>Primo/a</span></label>
-        <label class="option-pill"><input type="radio" name="confidente_rel" value="Compañero/a"><span>Compañero/a</span></label>
-        <label class="option-pill"><input type="radio" name="confidente_rel" value="Otro"><span>Otro</span></label>
+        <label class="option-pill"><input type="radio" name="confidente_rel" value="Millor amic/ga"><span>Millor amic/ga</span></label>
+        <label class="option-pill"><input type="radio" name="confidente_rel" value="Amic/ga"><span>Amic/ga</span></label>
+        <label class="option-pill"><input type="radio" name="confidente_rel" value="Germà/na"><span>Germà/na</span></label>
+        <label class="option-pill"><input type="radio" name="confidente_rel" value="Cosí/na"><span>Cosí/na</span></label>
+        <label class="option-pill"><input type="radio" name="confidente_rel" value="Company/a"><span>Company/a</span></label>
+        <label class="option-pill"><input type="radio" name="confidente_rel" value="Altre"><span>Altre</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">WhatsApp del confidente <span class="badge badge-hard">obligatorio</span></label>
+      <label class="field-label">WhatsApp del confident <span class="badge badge-hard">obligatori</span></label>
       <input type="tel" id="confidente_wa" placeholder="+34 XXX XXX XXX">
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Consentimiento <span class="badge badge-hard">obligatorio</span></label>
+      <label class="field-label">Consentiment <span class="badge badge-hard">obligatori</span></label>
       <div class="option-grid" style="flex-direction:column;gap:10px">
         <label class="option-pill" style="width:100%">
-          <input type="radio" name="consentimiento" value="Acepto">
-          <span style="border-radius:12px;white-space:normal;line-height:1.5">✅ Acepto que mi perfil (y fotos) se compartan <strong>solo</strong> con el confidente del posible match para validar SÍ/NO.</span>
+          <input type="radio" name="consentimiento" value="Accepto">
+          <span style="border-radius:12px;white-space:normal;line-height:1.5">✅ Accepto que el meu perfil (i fotos) es comparteixin <strong>només</strong> amb el confident del possible match per validar SÍ/NO.</span>
         </label>
         <label class="option-pill" style="width:100%">
-          <input type="radio" name="consentimiento" value="No acepto">
-          <span style="border-radius:12px">❌ No acepto</span>
+          <input type="radio" name="consentimiento" value="No accepto">
+          <span style="border-radius:12px">❌ No accepto</span>
         </label>
       </div>
     </div>
@@ -643,61 +561,54 @@
 <!-- ── H: FOTOS ── -->
 <div class="section" id="sec-7">
   <div class="section-label">H · Fotos</div>
-  <div class="section-title">Una imagen dice mucho</div>
+  <div class="section-title">Una imatge diu molt</div>
   <div class="card">
-    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6">Opcional. Si no hay fotos, tu confidente decide <em>a ciegas de verdad</em>.</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6">Opcional. Si no hi ha fotos, el teu confident decideix <em>a cegues de veritat</em>.</p>
     <div class="upload-area" onclick="document.getElementById('foto-input').click()">
       <input type="file" id="foto-input" accept="image/*" multiple onchange="handlePhotos(event)">
       <div class="upload-icon">📸</div>
-      <p>Haz clic para subir tus fotos</p>
-      <small>JPG o PNG · Máx. 3 fotos</small>
+      <p>Fes clic per pujar les teves fotos</p>
+      <small>JPG o PNG · Màx. 3 fotos</small>
     </div>
     <div id="foto-preview" style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;"></div>
   </div>
   <div class="card" style="background:linear-gradient(135deg,#FFF5F3,#FEF0EC);border-color:var(--blush)">
     <p style="font-size:13px;color:var(--burgundy);line-height:1.6">
-      🔒 <strong>Tu privacidad importa.</strong> Tus datos solo se comparten con el confidente de tu match. Nunca con terceros.
+      🔒 <strong>La teva privacitat importa.</strong> Les teves dades només es comparteixen amb el confident del teu match. Mai amb tercers.
     </p>
   </div>
 </div>
 
-<!-- NAV -->
+<!-- BOTONS NAVEGACIÓ -->
 <div class="nav-area" id="navArea">
-  <button class="btn btn-secondary" id="btnBack" onclick="navigate(-1)" style="display:none">← Atrás</button>
+  <button class="btn btn-secondary" id="btnBack" onclick="navigate(-1)" style="display:none">← Enrere</button>
   <button class="btn btn-primary" id="btnNext" onclick="navigate(1)">Continuar →</button>
 </div>
 
-<!-- SUCCESS -->
+<!-- PANTALLA D'ÈXIT -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">💌</div>
-  <h2>¡Estás dentro!</h2>
-  <p>Hemos guardado tu perfil en nuestra base de datos. Cuando encontremos una buena afinidad, te avisaremos por WhatsApp.<br><br>La autenticidad es lo que enamora.</p>
+  <h2>Ets dins!</h2>
+  <p>Hem guardat el teu perfil. Quan trobem una bona afinitat, t'avisarem per WhatsApp.<br><br>L'autenticitat és el que enamora.</p>
   <br>
-  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--rose);font-style:italic;margin-top:8px">— El equipo de Citas a Ciegas ✦</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--rose);font-style:italic;margin-top:8px">— L'equip de Cites a Cegues ✦</div>
 </div>
 
 <script>
 // ════════════════════════════════════════════
-//  CONFIGURACIÓN — pon aquí tu URL de Apps Script
+//  CONFIGURACIÓ — posa aquí la teva URL d'Apps Script
 // ════════════════════════════════════════════
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/TU_DEPLOYMENT_ID_AQUI/exec";
-const IS_CONFIGURED = !APPS_SCRIPT_URL.includes("TU_DEPLOYMENT_ID");
-
-// Oculta banner si ya está configurado
-if (IS_CONFIGURED) {
-  const b = document.getElementById("configBanner");
-  if (b) b.style.display = "none";
-}
+const APPS_SCRIPT_URL = "POSA_AQUI_LA_TEVA_URL";
 
 // ════════════════════════════════════════════
-//  ESTADO
+//  ESTAT
 // ════════════════════════════════════════════
 let current = 0;
 const TOTAL = 8;
 let fotosCount = 0;
 
 // ════════════════════════════════════════════
-//  LÍMITES DE CHECKBOXES
+//  LÍMIT DE CHECKBOXES
 // ════════════════════════════════════════════
 function limitCheckboxes(name, max) {
   document.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
@@ -705,7 +616,7 @@ function limitCheckboxes(name, max) {
       const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
       if (checked.length > max) {
         this.checked = false;
-        showError(`Puedes elegir máximo ${max} opciones aquí.`);
+        showError(`Pots triar màxim ${max} opcions aquí.`);
       }
     });
   });
@@ -722,22 +633,103 @@ function updateUI() {
     const dot = document.getElementById(`dot-${i}`);
     dot.className = "step-dot" + (i === current ? " active" : i < current ? " done" : "");
   }
-  document.getElementById("stepText").textContent = `Paso ${current + 1} de ${TOTAL}`;
+  document.getElementById("stepText").textContent = `Pas ${current + 1} de ${TOTAL}`;
   document.getElementById("progressBar").style.width = `${((current + 1) / TOTAL) * 100}%`;
   document.getElementById("btnBack").style.display = current > 0 ? "block" : "none";
-  document.getElementById("btnNext").textContent = current === TOTAL - 1 ? "Enviar mi perfil ✨" : "Continuar →";
+  document.getElementById("btnNext").textContent = current === TOTAL - 1 ? "Enviar el meu perfil ✨" : "Continuar →";
   clearError();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function navigate(dir) {
-  if (dir === 1 && current === TOTAL - 1) { submitForm(); return; }
+  if (dir === 1) {
+    if (current === TOTAL - 1) { submitForm(); return; }
+    if (!validateStep(current)) return;
+  }
   current = Math.max(0, Math.min(TOTAL - 1, current + dir));
   updateUI();
 }
 
+function validateStep(step) {
+  clearError();
+
+  // Helpers
+  const val = id => (document.getElementById(id)?.value || "").trim();
+  const checked = name => document.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
+
+  if (step === 0) {
+    if (!val("nombre"))   { showError("Si us plau, escriu el teu nom i cognoms."); return false; }
+    if (!val("whatsapp")) { showError("El WhatsApp és obligatori."); return false; }
+    if (!val("edad"))     { showError("L'edat és obligatòria."); return false; }
+    if (!val("ciudad"))   { showError("Indica la teva ciutat de residència."); return false; }
+    if (!checked("genero"))      { showError("Selecciona el teu gènere."); return false; }
+    if (!checked("busca_genero")){ showError("Indica amb quins gèneres t'agradaria tenir cita."); return false; }
+    if (!checked("ocupacion"))   { showError("Selecciona la teva ocupació."); return false; }
+    if (!checked("idiomas"))     { showError("Selecciona almenys un idioma."); return false; }
+  }
+
+  if (step === 1) {
+    if (!checked("fuma"))        { showError("Indica si fumes."); return false; }
+    if (!checked("importa_fuma")){ showError("Indica si t'importa que l'altra persona fumi."); return false; }
+    if (!checked("bebe"))        { showError("Indica si beus alcohol."); return false; }
+    if (!checked("importa_bebe")){ showError("Indica si t'importa que l'altra persona begui."); return false; }
+    if (!checked("ejercicio"))   { showError("Indica la teva freqüència d'exercici."); return false; }
+    if (!checked("finde"))       { showError("Indica el teu pla típic de cap de setmana."); return false; }
+    if (!checked("ritmo"))       { showError("Indica el teu ritme (diürn / flexible / nocturn)."); return false; }
+  }
+
+  if (step === 2) {
+    const scales = ["p1","p2","p3","p4","p5","p6"];
+    const labels = [
+      "M'agrada conèixer gent nova",
+      "Planificar vs improvisar",
+      "Directe/a comunicant",
+      "Gestió del conflicte",
+      "Persona afectuosa",
+      "Converses profundes"
+    ];
+    for (let i = 0; i < scales.length; i++) {
+      if (!checked(scales[i])) {
+        showError(`Puntua: "${labels[i]}"`); return false;
+      }
+    }
+  }
+
+  if (step === 3) {
+    if (!checked("busca"))       { showError("Indica què busques ara mateix."); return false; }
+    if (!val("edad_min"))        { showError("Indica l'edat mínima que t'encaixa."); return false; }
+    if (!val("edad_max"))        { showError("Indica l'edat màxima que t'encaixa."); return false; }
+    const min = parseInt(val("edad_min")), max = parseInt(val("edad_max"));
+    if (min > max)               { showError("L'edat mínima no pot ser major que la màxima."); return false; }
+    if (!checked("distancia"))   { showError("Indica la distància que t'encaixa."); return false; }
+    if (!checked("valores"))     { showError("Indica la importància dels valors alineats."); return false; }
+    if (!checked("valora"))      { showError("Selecciona almenys una cosa que valores en una parella."); return false; }
+    if (!checked("primera_cita")){ showError("Indica quina seria la teva primera cita ideal."); return false; }
+  }
+
+  if (step === 4) {
+    if (!checked("redflag"))     { showError("Selecciona almenys una bandera vermella."); return false; }
+  }
+
+  if (step === 5) {
+    if (!checked("dias"))        { showError("Selecciona almenys un dia disponible."); return false; }
+    if (!checked("franja"))      { showError("Selecciona almenys una franja horària."); return false; }
+  }
+
+  if (step === 6) {
+    if (!val("confidente_nombre")){ showError("Escriu el nom del teu confident."); return false; }
+    if (!checked("confidente_rel")){ showError("Indica la relació amb el teu confident."); return false; }
+    if (!val("confidente_wa"))    { showError("El WhatsApp del confident és obligatori."); return false; }
+    if (!checked("consentimiento")){ showError("Has de respondre la pregunta de consentiment."); return false; }
+    const consent = document.querySelector('input[name="consentimiento"]:checked')?.value;
+    if (consent === "No accepto") { showError("Has d'acceptar el consentiment per continuar."); return false; }
+  }
+
+  return true;
+}
+
 // ════════════════════════════════════════════
-//  RECOGER DATOS DEL FORMULARIO
+//  RECOLLIR DADES DEL FORMULARI
 // ════════════════════════════════════════════
 function getChecked(name) {
   return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
@@ -745,21 +737,21 @@ function getChecked(name) {
 
 function collectFormData() {
   return {
-    nombre:           document.getElementById("nombre")?.value || "",
+    nom:              document.getElementById("nombre")?.value || "",
     whatsapp:         document.getElementById("whatsapp")?.value || "",
-    edad:             document.getElementById("edad")?.value || "",
-    ciudad:           document.getElementById("ciudad")?.value || "",
-    genero:           getChecked("genero")[0] || "",
-    busca_genero:     getChecked("busca_genero"),
-    ocupacion:        getChecked("ocupacion")[0] || "",
-    idiomas:          getChecked("idiomas"),
+    edat:             document.getElementById("edad")?.value || "",
+    ciutat:           document.getElementById("ciudad")?.value || "",
+    genere:           getChecked("genero")[0] || "",
+    busca_genere:     getChecked("busca_genero"),
+    ocupacio:         getChecked("ocupacion")[0] || "",
+    idiomes:          getChecked("idiomas"),
     fuma:             getChecked("fuma")[0] || "",
     importa_fuma:     getChecked("importa_fuma")[0] || "",
-    bebe:             getChecked("bebe")[0] || "",
-    importa_bebe:     getChecked("importa_bebe")[0] || "",
-    ejercicio:        getChecked("ejercicio")[0] || "",
-    finde:            getChecked("finde")[0] || "",
-    ritmo:            getChecked("ritmo")[0] || "",
+    beu:              getChecked("bebe")[0] || "",
+    importa_beu:      getChecked("importa_bebe")[0] || "",
+    exercici:         getChecked("ejercicio")[0] || "",
+    cap_setmana:      getChecked("finde")[0] || "",
+    ritme:            getChecked("ritmo")[0] || "",
     p1:               getChecked("p1")[0] || "",
     p2:               getChecked("p2")[0] || "",
     p3:               getChecked("p3")[0] || "",
@@ -767,75 +759,57 @@ function collectFormData() {
     p5:               getChecked("p5")[0] || "",
     p6:               getChecked("p6")[0] || "",
     busca:            getChecked("busca")[0] || "",
-    edad_min:         document.getElementById("edad_min")?.value || "",
-    edad_max:         document.getElementById("edad_max")?.value || "",
+    edat_min:         document.getElementById("edad_min")?.value || "",
+    edat_max:         document.getElementById("edad_max")?.value || "",
     distancia:        getChecked("distancia")[0] || "",
-    hijos:            getChecked("hijos")[0] || "",
-    valores:          getChecked("valores")[0] || "",
-    valora:           getChecked("valora"),
+    valors:           getChecked("valores")[0] || "",
+    valora_parella:   getChecked("valora"),
     primera_cita:     getChecked("primera_cita")[0] || "",
     redflag:          getChecked("redflag"),
-    otro_dealbreaker: document.getElementById("otro_dealbreaker")?.value || "",
-    dias:             getChecked("dias"),
+    altre_dealbreaker: document.getElementById("otro_dealbreaker")?.value || "",
+    dies:             getChecked("dias"),
     franja:           getChecked("franja"),
-    zona_cita:        getChecked("zona_cita")[0] || "",
-    restaurante:      getChecked("restaurante")[0] || "",
-    confidente_nombre: document.getElementById("confidente_nombre")?.value || "",
-    confidente_rel:   getChecked("confidente_rel")[0] || "",
-    confidente_wa:    document.getElementById("confidente_wa")?.value || "",
-    consentimiento:   getChecked("consentimiento")[0] || "",
+    confident_nom:    document.getElementById("confidente_nombre")?.value || "",
+    confident_rel:    getChecked("confidente_rel")[0] || "",
+    confident_wa:     document.getElementById("confidente_wa")?.value || "",
+    consentiment:     getChecked("consentimiento")[0] || "",
     fotos_count:      fotosCount
   };
 }
 
 // ════════════════════════════════════════════
-//  ENVÍO A APPS SCRIPT
+//  ENVIAMENT A APPS SCRIPT
 // ════════════════════════════════════════════
 async function submitForm() {
   clearError();
-
-  // Validación básica
   const data = collectFormData();
-  if (!data.nombre) { showError("Por favor, escribe tu nombre."); return; }
-  if (!data.whatsapp) { showError("El WhatsApp es obligatorio."); return; }
-  if (!data.edad) { showError("La edad es obligatoria."); return; }
-  if (!data.consentimiento || data.consentimiento === "No acepto") {
-    showError("Necesitas aceptar el consentimiento para continuar."); return;
+
+  if (!data.nom)      { showError("Si us plau, escriu el teu nom."); return; }
+  if (!data.whatsapp) { showError("El WhatsApp és obligatori."); return; }
+  if (!data.edat)     { showError("L'edat és obligatòria."); return; }
+  if (!data.consentiment || data.consentiment === "No accepto") {
+    showError("Has d'acceptar el consentiment per continuar."); return;
   }
 
-  // Si no está configurado, simula éxito con aviso
-  if (!IS_CONFIGURED) {
-    console.log("📋 Datos del formulario (modo demo):", data);
-    showSuccess();
-    return;
-  }
-
-  // Envío real
   setLoading(true);
-
   try {
-    // Apps Script no acepta CORS con fetch normal → usamos no-cors (fire & forget)
-    // Para recibir respuesta usamos un iframe trick o simplemente confiamos en que llega
     await fetch(APPS_SCRIPT_URL, {
       method: "POST",
-      mode: "no-cors", // ← necesario para Apps Script
-      headers: { "Content-Type": "text/plain" }, // no-cors solo permite text/plain
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
       body: JSON.stringify(data)
     });
-
-    // Con no-cors no podemos leer la respuesta, pero si no lanza error → llegó
     setLoading(false);
     showSuccess();
-
   } catch (err) {
     setLoading(false);
-    showError("No se pudo conectar con el servidor. Verifica tu conexión e inténtalo de nuevo.");
+    showError("No s'ha pogut connectar amb el servidor. Comprova la connexió i torna-ho a provar.");
     console.error(err);
   }
 }
 
 // ════════════════════════════════════════════
-//  HELPERS UI
+//  HELPERS
 // ════════════════════════════════════════════
 function setLoading(on) {
   document.getElementById("sendingOverlay").classList.toggle("active", on);
@@ -857,7 +831,6 @@ function showSuccess() {
   document.getElementById("navArea").style.display = "none";
   document.getElementById("stepIndicator").style.display = "none";
   document.getElementById("mainHeader").style.display = "none";
-  document.getElementById("configBanner").style.display = "none";
   document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
   document.getElementById("successScreen").classList.add("active");
   document.getElementById("progressBar").style.width = "100%";
@@ -884,7 +857,7 @@ function handlePhotos(event) {
   });
 }
 
-// Init
+// Inici
 updateUI();
 </script>
 </body>
