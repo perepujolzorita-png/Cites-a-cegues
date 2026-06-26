@@ -35,9 +35,7 @@
   .field { margin-bottom: 24px; }
   .field:last-child { margin-bottom: 0; }
   .field-label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
-  .badge { display: inline-block; font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
-  .badge-hard { background: #FDE8E8; color: var(--burgundy); }
-  .badge-scoring { background: #EDF4FF; color: #3B6CB7; }
+  .badge { display: none; }
   input[type="text"], input[type="number"], input[type="tel"], textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: var(--cream); transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
   input:focus, textarea:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(201,123,108,0.12); background: var(--white); }
   textarea { resize: vertical; min-height: 80px; }
@@ -146,18 +144,16 @@
     <div class="field">
       <label class="field-label">Gènere <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="genero" value="Masculi"><span>Masculí</span></label>
-        <label class="option-pill"><input type="radio" name="genero" value="Femeni"><span>Femení</span></label>
-        <label class="option-pill"><input type="radio" name="genero" value="Altres"><span>Altres</span></label>
+        <label class="option-pill"><input type="radio" name="genero" value="Home"><span>Home</span></label>
+        <label class="option-pill"><input type="radio" name="genero" value="Dona"><span>Dona</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
       <label class="field-label">Amb quins gèneres t'agradaria tenir cita? <span class="badge badge-hard">filtre</span></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Masculi"><span>Masculí</span></label>
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Femeni"><span>Femení</span></label>
-        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Altres"><span>Altres</span></label>
+        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Home"><span>Home</span></label>
+        <label class="option-pill"><input type="checkbox" name="busca_genero" value="Dona"><span>Dona</span></label>
       </div>
     </div>
   </div>
@@ -194,39 +190,21 @@
   <div class="section-title">Com és el teu dia a dia?</div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Fumes? <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Fumes?</label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="fuma" value="Si"><span>Si</span></label>
+        <label class="option-pill"><input type="radio" name="fuma" value="Si"><span>Sí</span></label>
         <label class="option-pill"><input type="radio" name="fuma" value="De vegades"><span>De vegades</span></label>
         <label class="option-pill"><input type="radio" name="fuma" value="No"><span>No</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
-      <label class="field-label">T'importa que l'altra persona fumi? <span class="badge badge-hard">filtre</span></label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="importa_fuma" value="Només no fumadors"><span>Només no fumadors</span></label>
-        <label class="option-pill"><input type="radio" name="importa_fuma" value="De vegades OK"><span>De vegades OK</span></label>
-        <label class="option-pill"><input type="radio" name="importa_fuma" value="M'es igual"><span>M'es igual</span></label>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Beus alcohol? <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">Beus alcohol?</label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="bebe" value="Si"><span>Si</span></label>
+        <label class="option-pill"><input type="radio" name="bebe" value="Si"><span>Sí</span></label>
         <label class="option-pill"><input type="radio" name="bebe" value="De vegades"><span>De vegades</span></label>
         <label class="option-pill"><input type="radio" name="bebe" value="No"><span>No</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
-      <label class="field-label">T'importa que l'altra persona begui? <span class="badge badge-hard">filtre</span></label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="importa_bebe" value="Només no begudors"><span>Només no begudors</span></label>
-        <label class="option-pill"><input type="radio" name="importa_bebe" value="De vegades OK"><span>De vegades OK</span></label>
-        <label class="option-pill"><input type="radio" name="importa_bebe" value="M'es igual"><span>M'es igual</span></label>
       </div>
     </div>
   </div>
@@ -242,22 +220,22 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Pla típic de cap de setmana <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">Pla típic de cap de setmana <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(pots triar més d'un)</small></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="finde" value="Social"><span>Social / festa</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Pla tranquil"><span>Pla tranquil</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Natura-esport"><span>Natura / esport</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Cultura"><span>Cultura</span></label>
-        <label class="option-pill"><input type="radio" name="finde" value="Improvisat"><span>Improvisat</span></label>
+        <label class="option-pill"><input type="checkbox" name="finde" value="Social"><span>Social / festa</span></label>
+        <label class="option-pill"><input type="checkbox" name="finde" value="Pla tranquil"><span>Pla tranquil</span></label>
+        <label class="option-pill"><input type="checkbox" name="finde" value="Natura-esport"><span>Natura / esport</span></label>
+        <label class="option-pill"><input type="checkbox" name="finde" value="Cultura"><span>Cultura</span></label>
+        <label class="option-pill"><input type="checkbox" name="finde" value="Improvisat"><span>Improvisat</span></label>
       </div>
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">El teu ritme <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">El teu ritme <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(pots triar més d'un)</small></label>
       <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="ritmo" value="Molt diürn"><span>Molt diürn</span></label>
-        <label class="option-pill"><input type="radio" name="ritmo" value="Flexible"><span>Flexible</span></label>
-        <label class="option-pill"><input type="radio" name="ritmo" value="Molt nocturn"><span>Molt nocturn</span></label>
+        <label class="option-pill"><input type="checkbox" name="ritmo" value="Molt diürn"><span>🌅 Molt diürn</span></label>
+        <label class="option-pill"><input type="checkbox" name="ritmo" value="Flexible"><span>⚖️ Flexible</span></label>
+        <label class="option-pill"><input type="checkbox" name="ritmo" value="Molt nocturn"><span>🌙 Molt nocturn</span></label>
       </div>
     </div>
   </div>
@@ -285,7 +263,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">Evito els esdeveniments atapeïts i sorollosos</div>
+        <div class="scale-item-label">Prefereixo ambients tranquils als esdeveniments molt sorollosos</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p2" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p2" value="2"><span>2</span></label>
@@ -298,7 +276,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">M'avorraria si passés el cap de setmana sol/a</div>
+        <div class="scale-item-label">M'avorreixo si passo el cap de setmana sol/a</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p3" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p3" value="2"><span>2</span></label>
@@ -311,7 +289,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">Perdo l'interès en una conversa quan es torna filosòfica</div>
+        <div class="scale-item-label">Em costa mantenir l'interès quan una conversa es torna molt filosòfica</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p4" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p4" value="2"><span>2</span></label>
@@ -376,7 +354,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">Crec que dir les coses de manera directa és més important que tenir cura dels sentiments dels altres</div>
+        <div class="scale-item-label">Crec que dir les coses de manera directa és més important que cuidar els sentiments dels altres</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p9" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p9" value="2"><span>2</span></label>
@@ -389,7 +367,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">Rarament parlo dels meus sentiments i emocions</div>
+        <div class="scale-item-label">Tendeixo a guardar els meus sentiments i emocions per a mi</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p10" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p10" value="2"><span>2</span></label>
@@ -415,7 +393,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">Quan viatge prefereixo tenir unes idees generals que un pla detallat</div>
+        <div class="scale-item-label">Quan viatjo prefereixo tenir unes idees generals que un pla detallat</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p12" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p12" value="2"><span>2</span></label>
@@ -441,7 +419,7 @@
       <div class="divider"></div>
 
       <div class="scale-item">
-        <div class="scale-item-label">Sovint penso que hauria d'haver dit en una conversa del passat</div>
+        <div class="scale-item-label">Sovint recordo coses que hauria dit en converses passades</div>
         <div class="scale-pills">
           <label class="scale-pill"><input type="radio" name="p14" value="1"><span>1</span></label>
           <label class="scale-pill"><input type="radio" name="p14" value="2"><span>2</span></label>
@@ -575,34 +553,24 @@
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="distancia" value="Mateixa ciutat"><span>Mateixa ciutat</span></label>
         <label class="option-pill"><input type="radio" name="distancia" value="A prop (30 min)"><span>A prop (30 min)</span></label>
-        <label class="option-pill"><input type="radio" name="distancia" value="Em desplaco"><span>Em desplaco</span></label>
+        <label class="option-pill"><input type="radio" name="distancia" value="Em desplaço"><span>Em desplaço</span></label>
         <label class="option-pill"><input type="radio" name="distancia" value="Indiferent"><span>Indiferent</span></label>
       </div>
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Importància de valors alineats <span class="badge badge-scoring">afinitat</span></label>
-      <div class="option-grid">
-        <label class="option-pill"><input type="radio" name="valores" value="Molt important"><span>Molt important</span></label>
-        <label class="option-pill"><input type="radio" name="valores" value="Important"><span>Important</span></label>
-        <label class="option-pill"><input type="radio" name="valores" value="Poc"><span>Poc</span></label>
-        <label class="option-pill"><input type="radio" name="valores" value="Gens"><span>Gens</span></label>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="field">
       <label class="field-label">Què valores més en una parella? <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(fins a 5)</small></label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="valora" value="Humor"><span>Humor</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Comunicacio"><span>Comunicacio</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Comunicacio"><span>Comunicació</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Lleialtat"><span>Lleialtat</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Ambicio"><span>Ambicio</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Ambicio"><span>Ambició</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Calma emocional"><span>Calma emocional</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Aventura"><span>Aventura</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Independencia"><span>Independencia</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Independencia"><span>Independència</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Detallista"><span>Detallista</span></label>
-        <label class="option-pill"><input type="checkbox" name="valora" value="Familia"><span>Familia</span></label>
+        <label class="option-pill"><input type="checkbox" name="valora" value="Familia"><span>Família</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Romanticisme"><span>Romanticisme</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Planificador/a"><span>Planificador/a</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Flexible"><span>Flexible</span></label>
@@ -611,6 +579,24 @@
         <label class="option-pill"><input type="checkbox" name="valora" value="Conservador/a"><span>Conservador/a</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Realista"><span>Realista</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Idealista"><span>Idealista</span></label>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="field">
+      <label class="field-label">Com et definiries a tu mateix/a? <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(fins a 5)</small></label>
+      <div class="option-grid">
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Curios/a"><span>Curiós/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Creatiu/va"><span>Creatiu/va</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Ambicies/a"><span>Ambiciós/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Tranquil/la"><span>Tranquil·la</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Aventurer/a"><span>Aventurer/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Empatic/a"><span>Empàtic/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Analitic/a"><span>Analític/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Espontani/a"><span>Espontani/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Lider"><span>Líder</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Cuidador/a"><span>Cuidador/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Optimista"><span>Optimista</span></label>
+        <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Realista"><span>Realista</span></label>
       </div>
     </div>
     <div class="divider"></div>
@@ -634,23 +620,21 @@
   <div class="section-title">Què no toleres? <em>L'honestedat per davant</em></div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Banderes vermelles (fins a 5) <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Banderes vermelles (fins a 5)</label>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.5">Indica les coses que no toleraries en una parella. Les usem per descartar matches incompatibles.</p>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="redflag" value="Que fumi"><span>Que fumi</span></label>
         <label class="option-pill"><input type="checkbox" name="redflag" value="Que begui sovint"><span>Que begui sovint</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Sense esport"><span>Sense esport</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Sense cap rutina d'esport"><span>Sense cap rutina d'esport</span></label>
         <label class="option-pill"><input type="checkbox" name="redflag" value="Que visqui lluny"><span>Que visqui lluny</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Enganxat al mobil"><span>Enganxat al mobil</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt actiu a xarxes"><span>Molt actiu a xarxes</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Poca higiene"><span>Poca higiene</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="No curios/a"><span>No curios/a</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Mala comunicacio"><span>Mala comunicacio</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Egoista"><span>Egoista</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Sense objectius"><span>Sense objectius</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Actituds masclistes"><span>Actituds masclistes</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt intens/a"><span>Molt intens/a</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt immadur/a"><span>Molt immadur/a</span></label>
-        <label class="option-pill"><input type="checkbox" name="redflag" value="No viatja"><span>No viatja</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que busqui alguna cosa casual"><span>Que busqui alguna cosa casual</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que busqui relació seriosa"><span>Que busqui relació seriosa</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que vulgui fills"><span>Que vulgui fills</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que no vulgui fills"><span>Que no vulgui fills</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt nocturn/a"><span>Molt nocturn/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Molt diürn/a"><span>Molt diürn/a</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que no viatgi"><span>Que no viatgi</span></label>
+        <label class="option-pill"><input type="checkbox" name="redflag" value="Que no parli la meva llengua"><span>Que no parli la meva llengua</span></label>
       </div>
     </div>
     <div class="divider"></div>
@@ -725,7 +709,7 @@
           <span style="font-size:11px;color:var(--muted);">▼</span>
         </summary>
         <div style="padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.7;background:var(--white);border-top:1px solid var(--border);">
-          En acceptar, autoritzes que el teu perfil complet (dades personals i fotos si n'has afegit) es comparteixi <strong>únicament</strong> amb el confident de la persona amb qui es detecti una possible afinitat. Aquest confident només tindrà accés per validar SÍ o NO la cita. Les teves dades no es compartiran amb tercers, no s'usaran amb finalitats comercials ni es publicaran en cap plataforma. Tens dret a revocar aquest consentiment en qualsevol moment contactant amb l'equip de Cites a Cegues.
+          En acceptar, autoritzes que el teu perfil complet (dades personals i fotos si n'has afegit) es comparteixi <strong>únicament</strong> amb el confident de la persona amb qui es detecti una possible afinitat. Aquest confident només tindrà accés per validar SÍ o NO la cita. Les teves dades no es compartiran amb tercers, no s'usaran amb finalitats comercials ni es publicaran en cap plataforma pública. Tens dret a accedir, rectificar o suprimir les teves dades en qualsevol moment contactant amb l'equip de Cites a Cegues (RGPD - Reglament General de Protecció de Dades). Les dades s'eliminaran de forma permanent als 6 mesos si no s'ha produït cap match, o en qualsevol moment a petició teva.
         </div>
       </details>
       <div class="option-grid" style="flex-direction:column;gap:10px">
@@ -777,7 +761,7 @@
 </div>
 
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqw6xvHFr2Kd-gAER1c-Hh1ioGgiHBEVzWmPrr1dHGj1crUudypEnEL4A__kawbkg/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzpVxBIzhLkPtuWu5oCBCLQsuN4YI-VtTqf_ARIILUx7OWTkomFnAl1TpkN6pb4ZTo/exec";
 
 let current = 0;
 const TOTAL = 8;
@@ -793,6 +777,7 @@ function limitCheckboxes(name, max) {
 }
 limitCheckboxes("valora", 5);
 limitCheckboxes("redflag", 5);
+limitCheckboxes("autodefinicio", 5);
 
 function updateUI() {
   document.querySelectorAll(".section").forEach((s, i) => s.classList.toggle("active", i === current));
@@ -834,22 +819,19 @@ function validateStep(step) {
   }
   if (step === 1) {
     if (!checked("fuma"))        { showError("Indica si fumes."); return false; }
-    if (!checked("importa_fuma")){ showError("Indica si t'importa que l'altra persona fumi."); return false; }
     if (!checked("bebe"))        { showError("Indica si beus alcohol."); return false; }
-    if (!checked("importa_bebe")){ showError("Indica si t'importa que l'altra persona begui."); return false; }
     if (!checked("ejercicio"))   { showError("Indica la teva frequencia d'exercici."); return false; }
     if (!checked("finde"))       { showError("Indica el teu pla típic de cap de setmana."); return false; }
-    if (!checked("ritmo"))       { showError("Indica el teu ritme."); return false; }
-  }
+    if (!checked("ritmo"))       { showError("Indica el teu ritme."); return false; }  }
   if (step === 2) {
     const scales = ["p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17","p18","p19","p20","p21"];
     const labels = [
-      "M'agrada conèixer gent nova","Evito els esdeveniments atapeits","M'avorraria si passés el cap de setmana sol/a",
-      "Perdo l'interès en converses filosofiques","Acostumo a somiar despert/a","Prefereixo planificar",
-      "Sóc directe/a comunicant","Veig les coses de manera realista","Dir les coses directament vs tenir cura dels sentiments",
-      "Rarament parlo dels meus sentiments","Tiro més de cor que de cap","Prefereixo idees generals que pla detallat al viatjar",
-      "Prefereixo solucionar problemes","Sovint penso que hauria d'haver dit","Dubto de mi mateix/a quan m'equivoco",
-      "Les emocions em controlen","L'estat d'anim canvia rapidament","M'adapto facilment als canvis",
+      "M'agrada conèixer gent nova","Prefereixo ambients tranquils","M'avorreixo si passo el cap de setmana sol/a",
+      "Em costa mantenir l'interès en converses filosòfiques","Acostumo a somiar despert/a","Prefereixo planificar",
+      "Sóc directe/a comunicant","Veig les coses de manera realista","Dir les coses directament vs cuidar els sentiments",
+      "Tendeixo a guardar els sentiments per a mi","Tiro més de cor que de cap","Prefereixo idees generals al viatjar",
+      "Prefereixo solucionar problemes","Sovint recordo coses que hauria dit","Dubto de mi mateix/a quan m'equivoco",
+      "Les emocions em controlen","L'estat d'ànim canvia ràpidament","M'adapto fàcilment als canvis",
       "M'afecta el que pensen els altres","M'agrada liderar","Prefereixo escoltar abans de parlar"
     ];
     for (let i = 0; i < scales.length; i++) {
@@ -863,8 +845,8 @@ function validateStep(step) {
     const min = parseInt(val("edad_min")), max = parseInt(val("edad_max"));
     if (min > max)                { showError("L'edat mínima no pot ser major que la maxima."); return false; }
     if (!checked("distancia"))    { showError("Indica la distància que t'encaixa."); return false; }
-    if (!checked("valores"))      { showError("Indica la importancia dels valors alineats."); return false; }
     if (!checked("valora"))       { showError("Selecciona almenys una cosa que valores en una parella."); return false; }
+    if (!checked("autodefinicio")){ showError("Selecciona com et definiríes a tu mateix/a."); return false; }
     if (!checked("primera_cita")) { showError("Indica quina seria la teva primera cita ideal."); return false; }
   }
   if (step === 4) {
@@ -889,8 +871,15 @@ function getChecked(name) {
   return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
 }
 
+function generateUserId() {
+  const ts = Date.now().toString(36).toUpperCase();
+  const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `CAC-${ts}-${rand}`;
+}
+
 function collectFormData() {
   return {
+    user_id:          generateUserId(),
     nom:              document.getElementById("nombre")?.value || "",
     whatsapp:         document.getElementById("whatsapp")?.value || "",
     edat:             document.getElementById("edad")?.value || "",
@@ -900,12 +889,10 @@ function collectFormData() {
     ocupacio:         getChecked("ocupacion")[0] || "",
     idiomes:          getChecked("idiomas"),
     fuma:             getChecked("fuma")[0] || "",
-    importa_fuma:     getChecked("importa_fuma")[0] || "",
     beu:              getChecked("bebe")[0] || "",
-    importa_beu:      getChecked("importa_bebe")[0] || "",
     exercici:         getChecked("ejercicio")[0] || "",
-    cap_setmana:      getChecked("finde")[0] || "",
-    ritme:            getChecked("ritmo")[0] || "",
+    cap_setmana:      getChecked("finde"),
+    ritme:            getChecked("ritmo"),
     p1:  getChecked("p1")[0]||"",  p2:  getChecked("p2")[0]||"",  p3:  getChecked("p3")[0]||"",
     p4:  getChecked("p4")[0]||"",  p5:  getChecked("p5")[0]||"",  p6:  getChecked("p6")[0]||"",
     p7:  getChecked("p7")[0]||"",  p8:  getChecked("p8")[0]||"",  p9:  getChecked("p9")[0]||"",
@@ -917,8 +904,8 @@ function collectFormData() {
     edat_min:         document.getElementById("edad_min")?.value || "",
     edat_max:         document.getElementById("edad_max")?.value || "",
     distancia:        getChecked("distancia")[0] || "",
-    valors:           getChecked("valores")[0] || "",
     valora_parella:   getChecked("valora"),
+    autodefinicio:    getChecked("autodefinicio"),
     primera_cita:     getChecked("primera_cita")[0] || "",
     redflag:          getChecked("redflag"),
     altre_dealbreaker: document.getElementById("otro_dealbreaker")?.value || "",
