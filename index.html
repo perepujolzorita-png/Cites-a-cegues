@@ -87,14 +87,12 @@
   .sending-overlay p { color: white; font-size: 14px; opacity: 0.85; }
   .error-banner { display: none; background: #FDE8E8; border: 1px solid #F5C6C6; border-radius: 12px; padding: 14px 18px; font-size: 13px; color: var(--burgundy); margin: 0 auto 16px; max-width: 560px; }
   .error-banner.active { display: block; }
-  .consent-box { background: var(--cream); border: 1.5px solid var(--border); border-radius: 12px; padding: 16px; font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
-  .consent-box strong { color: var(--text); }
 </style>
 </head>
 <body>
 
 <div class="progress-bar" id="progressBar" style="width:12.5%"></div>
-<div class="sending-overlay" id="sendingOverlay"><div class="spinner"></div><p>Guardant el teu perfil...</p></div>
+<div class="sending-overlay" id="sendingOverlay"><div class="spinner"></div><p id="loadingMsg">Guardant el teu perfil...</p></div>
 <div class="error-banner" id="errorBanner">⚠️ <span id="errorMsg"></span></div>
 
 <div class="header" id="mainHeader">
@@ -126,23 +124,23 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">WhatsApp <span class="badge badge-hard">obligatori</span></label>
+      <label class="field-label">WhatsApp</label>
       <input type="tel" id="whatsapp" placeholder="+34 XXX XXX XXX">
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Edat <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Edat</label>
       <input type="number" id="edad" placeholder="La teva edat" min="18" max="99">
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Ciutat de residència <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">Ciutat de residència</label>
       <input type="text" id="ciudad" placeholder="On vius? (ex: Barcelona, Gracia...)">
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Gènere <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Gènere</label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="genero" value="Home"><span>Home</span></label>
         <label class="option-pill"><input type="radio" name="genero" value="Dona"><span>Dona</span></label>
@@ -150,7 +148,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Amb quins gèneres t'agradaria tenir cita? <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Amb quins gèneres t'agradaria tenir cita?</label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="busca_genero" value="Home"><span>Home</span></label>
         <label class="option-pill"><input type="checkbox" name="busca_genero" value="Dona"><span>Dona</span></label>
@@ -159,7 +157,7 @@
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Ocupació <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">Ocupació</label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="ocupacion" value="Estudiant"><span>Estudiant</span></label>
         <label class="option-pill"><input type="radio" name="ocupacion" value="Empleat/da"><span>Empleat/da</span></label>
@@ -170,7 +168,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Idiomes <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">Idiomes</label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="idiomas" value="Espanyol"><span>Espanyol</span></label>
         <label class="option-pill"><input type="checkbox" name="idiomas" value="Catala"><span>Catala</span></label>
@@ -210,7 +208,7 @@
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Freqüència d'exercici <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">Freqüència d'exercici</label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="ejercicio" value="4+ dies/setmana"><span>4+ dies/setmana</span></label>
         <label class="option-pill"><input type="radio" name="ejercicio" value="2-3 dies/setmana"><span>2-3 dies/setmana</span></label>
@@ -220,7 +218,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Pla típic de cap de setmana <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(pots triar més d'un)</small></label>
+      <label class="field-label">Pla típic de cap de setmana <small style="color:var(--muted);font-size:11px">(pots triar més d'un)</small></label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="finde" value="Social"><span>Social / festa</span></label>
         <label class="option-pill"><input type="checkbox" name="finde" value="Pla tranquil"><span>Pla tranquil</span></label>
@@ -231,7 +229,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">El teu ritme <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(pots triar més d'un)</small></label>
+      <label class="field-label">El teu ritme <small style="color:var(--muted);font-size:11px">(pots triar més d'un)</small></label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="ritmo" value="Molt diürn"><span>🌅 Molt diürn</span></label>
         <label class="option-pill"><input type="checkbox" name="ritmo" value="Flexible"><span>⚖️ Flexible</span></label>
@@ -248,7 +246,6 @@
   <p style="font-size:12px;color:var(--muted);max-width:560px;margin:0 auto 20px;padding:0 20px;">1 = No estic gens d'acord &nbsp;·&nbsp; 5 = Hi estic totalment d'acord</p>
   <div class="card">
     <div class="scale-group">
-
       <div class="scale-item">
         <div class="scale-item-label">M'agrada conèixer gent nova</div>
         <div class="scale-pills">
@@ -261,7 +258,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Prefereixo ambients tranquils als esdeveniments molt sorollosos</div>
         <div class="scale-pills">
@@ -274,7 +270,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">M'avorreixo si passo el cap de setmana sol/a</div>
         <div class="scale-pills">
@@ -287,7 +282,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Em costa mantenir l'interès quan una conversa es torna molt filosòfica</div>
         <div class="scale-pills">
@@ -300,7 +294,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Acostumo a deixar córrer la fantasia i somiar despert/a</div>
         <div class="scale-pills">
@@ -313,7 +306,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Prefereixo planificar abans que improvisar</div>
         <div class="scale-pills">
@@ -326,7 +318,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Sóc directe/a comunicant el que penso</div>
         <div class="scale-pills">
@@ -339,7 +330,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Veig les coses de manera realista en lloc d'imaginar com podrien ser</div>
         <div class="scale-pills">
@@ -352,7 +342,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Crec que dir les coses de manera directa és més important que cuidar els sentiments dels altres</div>
         <div class="scale-pills">
@@ -365,7 +354,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Tendeixo a guardar els meus sentiments i emocions per a mi</div>
         <div class="scale-pills">
@@ -378,7 +366,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Quan he de prendre decisions tiro més de cor que de cap</div>
         <div class="scale-pills">
@@ -391,7 +378,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Quan viatjo prefereixo tenir unes idees generals que un pla detallat</div>
         <div class="scale-pills">
@@ -404,7 +390,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Prefereixo solucionar els problemes que deixar-los passar</div>
         <div class="scale-pills">
@@ -417,7 +402,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Sovint recordo coses que hauria dit en converses passades</div>
         <div class="scale-pills">
@@ -430,7 +414,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Si m'equivoco tendeixo a dubtar de mi mateix/a, de les meves habilitats o coneixements</div>
         <div class="scale-pills">
@@ -443,7 +426,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Les meves emocions em controlen més que jo a elles</div>
         <div class="scale-pills">
@@ -456,7 +438,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">El meu estat d'anim pot canviar rapidament</div>
         <div class="scale-pills">
@@ -469,7 +450,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">M'adapto facilment quan canvien els plans</div>
         <div class="scale-pills">
@@ -482,7 +462,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">M'afecta molt el que les altres persones puguin pensar de mi</div>
         <div class="scale-pills">
@@ -495,7 +474,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">M'agrada liderar</div>
         <div class="scale-pills">
@@ -508,7 +486,6 @@
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
       <div class="divider"></div>
-
       <div class="scale-item">
         <div class="scale-item-label">Prefereixo escoltar abans de parlar en una conversa</div>
         <div class="scale-pills">
@@ -520,7 +497,6 @@
         </div>
         <div class="scale-labels"><span>No d'acord</span><span>Totalment d'acord</span></div>
       </div>
-
     </div>
   </div>
 </div>
@@ -531,7 +507,7 @@
   <div class="section-title">Siguem honestos</div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Què busques ara mateix? <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Què busques ara mateix?</label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="busca" value="Relació seriosa"><span>Relació seriosa</span></label>
         <label class="option-pill"><input type="radio" name="busca" value="Alguna cosa casual"><span>Alguna cosa casual</span></label>
@@ -540,7 +516,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Rang d'edat que t'encaixa <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Rang d'edat que t'encaixa</label>
       <div class="range-row">
         <input type="number" id="edad_min" placeholder="Min." min="18" max="99">
         <input type="number" id="edad_max" placeholder="Max." min="18" max="99">
@@ -549,7 +525,7 @@
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Distància <span class="badge badge-hard">filtre</span></label>
+      <label class="field-label">Distància</label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="distancia" value="Mateixa ciutat"><span>Mateixa ciutat</span></label>
         <label class="option-pill"><input type="radio" name="distancia" value="A prop (30 min)"><span>A prop (30 min)</span></label>
@@ -560,7 +536,7 @@
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Què valores més en una parella? <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(fins a 5)</small></label>
+      <label class="field-label">Què valores més en una parella? <small style="color:var(--muted);font-size:11px">(fins a 5)</small></label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="valora" value="Humor"><span>Humor</span></label>
         <label class="option-pill"><input type="checkbox" name="valora" value="Comunicacio"><span>Comunicació</span></label>
@@ -583,7 +559,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">Com et definiries a tu mateix/a? <span class="badge badge-scoring">afinitat</span> <small style="color:var(--muted);font-size:11px">(fins a 5)</small></label>
+      <label class="field-label">Com et definiries a tu mateix/a? <small style="color:var(--muted);font-size:11px">(fins a 5)</small></label>
       <div class="option-grid">
         <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Curios/a"><span>Curiós/a</span></label>
         <label class="option-pill"><input type="checkbox" name="autodefinicio" value="Creatiu/va"><span>Creatiu/va</span></label>
@@ -601,7 +577,7 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">La teva primera cita ideal <span class="badge badge-scoring">afinitat</span></label>
+      <label class="field-label">La teva primera cita ideal</label>
       <div class="option-grid">
         <label class="option-pill"><input type="radio" name="primera_cita" value="Cafe"><span>Cafe</span></label>
         <label class="option-pill"><input type="radio" name="primera_cita" value="Sopar"><span>Sopar</span></label>
@@ -696,20 +672,20 @@
     </div>
     <div class="divider"></div>
     <div class="field">
-      <label class="field-label">WhatsApp del confident <span class="badge badge-hard">obligatori</span></label>
+      <label class="field-label">WhatsApp del confident</label>
       <input type="tel" id="confidente_wa" placeholder="+34 XXX XXX XXX">
     </div>
   </div>
   <div class="card">
     <div class="field">
-      <label class="field-label">Consentiment <span class="badge badge-hard">obligatori</span></label>
+      <label class="field-label">Consentiment</label>
       <details style="margin-bottom:16px;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;">
         <summary style="padding:14px 16px;font-size:13px;font-weight:500;color:var(--text);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;background:var(--cream);">
           Llegeix les condicions del consentiment
           <span style="font-size:11px;color:var(--muted);">▼</span>
         </summary>
         <div style="padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.7;background:var(--white);border-top:1px solid var(--border);">
-          En acceptar, autoritzes que el teu perfil complet (dades personals i fotos si n'has afegit) es comparteixi <strong>únicament</strong> amb el confident de la persona amb qui es detecti una possible afinitat. Aquest confident només tindrà accés per validar SÍ o NO la cita. Les teves dades no es compartiran amb tercers, no s'usaran amb finalitats comercials ni es publicaran en cap plataforma pública. Tens dret a accedir, rectificar o suprimir les teves dades en qualsevol moment contactant amb l'equip de Cites a Cegues (RGPD - Reglament General de Protecció de Dades). Les dades s'eliminaran de forma permanent als 6 mesos si no s'ha produït cap match, o en qualsevol moment a petició teva.
+          En acceptar, autoritzes que el teu perfil complet (dades personals i fotos si n'has afegit) es comparteixi <strong>únicament</strong> amb el confident de la persona amb qui es detecti una possible afinitat. Aquest confident només tindrà accés per validar SÍ o NO la cita. Les teves dades no es compartiran amb tercers, no s'usaran amb finalitats comercials ni es publicaran en cap plataforma pública. Tens dret a accedir, rectificar o suprimir les teves dades en qualsevol moment contactant amb l'equip de Cites a Cegues (RGPD). Les dades s'eliminaran de forma permanent als 6 mesos si no s'ha produït cap match, o en qualsevol moment a petició teva.
         </div>
       </details>
       <div class="option-grid" style="flex-direction:column;gap:10px">
@@ -761,11 +737,56 @@
 </div>
 
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxetZBYWkfu9FtbVC6V_GbVS8MBZsvGAgkjsiopsSgMYTxXtiHorbvcNPKLKov6-w_s/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzs-RBpFOLkgysn2mnmISN9Qq6pYemmGpDS9G3bvW_sk5tzP6H0L5JMq3alaf3qQC18/exec";
+
 let current = 0;
 const TOTAL = 8;
-let fotosCount = 0;
+let fotosBase64 = []; // array de fins a 3 fotos comprimides en base64
 
+// ── Genera codi_usuari al client ─────────────────────────────
+function generarCodiClient(nom) {
+  const net = (nom || "Usuari")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z\s]/g, "").trim();
+  const parts  = net.split(/\s+/);
+  const primer = parts[0] ? cap(parts[0]) : "Usuari";
+  const cognom = parts[1] ? cap(parts[1]) : "";
+  const ordre  = String(Math.floor(Math.random() * 9000) + 1000); // 4 dígits aleatoris
+  return primer + cognom + ordre;
+}
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase(); }
+
+// ── Comprimeix una foto al navegador ─────────────────────────
+function comprimirFoto(file, maxKB = 200) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let w = img.width, h = img.height;
+        const maxDim = 1200;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+          else       { w = Math.round(w * maxDim / h); h = maxDim; }
+        }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+        let quality = 0.8;
+        let result = canvas.toDataURL("image/jpeg", quality);
+        while (result.length > maxKB * 1024 * 1.37 && quality > 0.3) {
+          quality -= 0.1;
+          result = canvas.toDataURL("image/jpeg", quality);
+        }
+        resolve(result); // base64 comprimida
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ── Limitació de checkboxes ───────────────────────────────────
 function limitCheckboxes(name, max) {
   document.querySelectorAll(`input[name="${name}"]`).forEach(cb => {
     cb.addEventListener("change", function () {
@@ -805,7 +826,6 @@ function validateStep(step) {
   clearError();
   const val = id => (document.getElementById(id)?.value || "").trim();
   const checked = name => document.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
-
   if (step === 0) {
     if (!val("nombre"))          { showError("Si us plau, escriu el teu nom i cognoms."); return false; }
     if (!val("whatsapp"))        { showError("El WhatsApp és obligatori."); return false; }
@@ -817,11 +837,12 @@ function validateStep(step) {
     if (!checked("idiomas"))     { showError("Selecciona almenys un idioma."); return false; }
   }
   if (step === 1) {
-    if (!checked("fuma"))        { showError("Indica si fumes."); return false; }
-    if (!checked("bebe"))        { showError("Indica si beus alcohol."); return false; }
-    if (!checked("ejercicio"))   { showError("Indica la teva frequencia d'exercici."); return false; }
-    if (!checked("finde"))       { showError("Indica el teu pla típic de cap de setmana."); return false; }
-    if (!checked("ritmo"))       { showError("Indica el teu ritme."); return false; }  }
+    if (!checked("fuma"))      { showError("Indica si fumes."); return false; }
+    if (!checked("bebe"))      { showError("Indica si beus alcohol."); return false; }
+    if (!checked("ejercicio")) { showError("Indica la teva frequencia d'exercici."); return false; }
+    if (!checked("finde"))     { showError("Indica el teu pla típic de cap de setmana."); return false; }
+    if (!checked("ritmo"))     { showError("Indica el teu ritme."); return false; }
+  }
   if (step === 2) {
     const scales = ["p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17","p18","p19","p20","p21"];
     const labels = [
@@ -849,11 +870,11 @@ function validateStep(step) {
     if (!checked("primera_cita")) { showError("Indica quina seria la teva primera cita ideal."); return false; }
   }
   if (step === 4) {
-    if (!checked("redflag"))      { showError("Selecciona almenys una bandera vermella."); return false; }
+    if (!checked("redflag")) { showError("Selecciona almenys una bandera vermella."); return false; }
   }
   if (step === 5) {
-    if (!checked("dias"))         { showError("Selecciona almenys un dia disponible."); return false; }
-    if (!checked("franja"))       { showError("Selecciona almenys una franja horaria."); return false; }
+    if (!checked("dias"))   { showError("Selecciona almenys un dia disponible."); return false; }
+    if (!checked("franja")) { showError("Selecciona almenys una franja horaria."); return false; }
   }
   if (step === 6) {
     if (!val("confidente_nombre")) { showError("Escriu el nom del teu confident."); return false; }
@@ -870,15 +891,9 @@ function getChecked(name) {
   return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
 }
 
-function generateUserId() {
-  const ts = Date.now().toString(36).toUpperCase();
-  const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
-  return `CAC-${ts}-${rand}`;
-}
-
-function collectFormData() {
+function collectFormData(codiUsuari) {
   return {
-    user_id:          generateUserId(),
+    codi_usuari:      codiUsuari,
     nom:              document.getElementById("nombre")?.value || "",
     whatsapp:         document.getElementById("whatsapp")?.value || "",
     edat:             document.getElementById("edad")?.value || "",
@@ -914,20 +929,49 @@ function collectFormData() {
     confident_rel:    getChecked("confidente_rel")[0] || "",
     confident_wa:     document.getElementById("confidente_wa")?.value || "",
     consentiment:     getChecked("consentimiento")[0] || "",
-    fotos_count:      fotosCount
+    fotos_count:      fotosBase64.length
   };
 }
 
 async function submitForm() {
   clearError();
-  const data = collectFormData();
-  if (!data.nom)      { showError("Si us plau, escriu el teu nom."); return; }
-  if (!data.whatsapp) { showError("El WhatsApp és obligatori."); return; }
-  if (!data.edat)     { showError("L'edat és obligatòria."); return; }
-  if (!data.consentiment || data.consentiment === "No accepto") { showError("Has d'acceptar el consentiment per continuar."); return; }
-  setLoading(true);
+  const nom = document.getElementById("nombre")?.value || "";
+  const whatsapp = document.getElementById("whatsapp")?.value || "";
+  const edat = document.getElementById("edad")?.value || "";
+  const consentiment = document.querySelector('input[name="consentimiento"]:checked')?.value || "";
+  if (!nom)      { showError("Si us plau, escriu el teu nom."); return; }
+  if (!whatsapp) { showError("El WhatsApp és obligatori."); return; }
+  if (!edat)     { showError("L'edat és obligatòria."); return; }
+  if (!consentiment || consentiment === "No accepto") { showError("Has d'acceptar el consentiment per continuar."); return; }
+
+  // Genera el codi al client
+  const codiUsuari = generarCodiClient(nom);
+
+  setLoading(true, "Guardant el teu perfil...");
+
   try {
-    await fetch(APPS_SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(data) });
+    // 1a crida: envia les dades de text (no-cors)
+    const data = collectFormData(codiUsuari);
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify(data)
+    });
+
+    // 2a crida: envia les fotos si n'hi ha (no-cors)
+    if (fotosBase64.length > 0) {
+      setLoading(true, "Pujant les fotos...");
+      const fotosData = { codi_usuari: codiUsuari };
+      fotosBase64.forEach((b64, i) => { fotosData[`foto${i+1}`] = b64; });
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ ...fotosData, _action: "fotos" })
+      });
+    }
+
     setLoading(false);
     showSuccess();
   } catch (err) {
@@ -937,9 +981,10 @@ async function submitForm() {
   }
 }
 
-function setLoading(on) {
+function setLoading(on, msg) {
   document.getElementById("sendingOverlay").classList.toggle("active", on);
   document.getElementById("btnNext").disabled = on;
+  if (msg) document.getElementById("loadingMsg").textContent = msg;
 }
 function showError(msg) {
   const el = document.getElementById("errorBanner");
@@ -957,25 +1002,25 @@ function showSuccess() {
   document.getElementById("progressBar").style.width = "100%";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-function handlePhotos(event) {
+
+async function handlePhotos(event) {
   const files = Array.from(event.target.files).slice(0, 3);
-  fotosCount = files.length;
+  fotosBase64 = [];
   const preview = document.getElementById("foto-preview");
   preview.innerHTML = "";
-  files.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const div = document.createElement("div");
-      div.style.cssText = "width:80px;height:80px;border-radius:10px;overflow:hidden;border:2px solid var(--border)";
-      const img = document.createElement("img");
-      img.src = e.target.result;
-      img.style.cssText = "width:100%;height:100%;object-fit:cover";
-      div.appendChild(img);
-      preview.appendChild(div);
-    };
-    reader.readAsDataURL(file);
-  });
+  for (const file of files) {
+    const b64 = await comprimirFoto(file, 200);
+    fotosBase64.push(b64);
+    const div = document.createElement("div");
+    div.style.cssText = "width:80px;height:80px;border-radius:10px;overflow:hidden;border:2px solid var(--border)";
+    const img = document.createElement("img");
+    img.src = b64;
+    img.style.cssText = "width:100%;height:100%;object-fit:cover";
+    div.appendChild(img);
+    preview.appendChild(div);
+  }
 }
+
 updateUI();
 </script>
 </body>
