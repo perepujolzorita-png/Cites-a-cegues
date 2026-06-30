@@ -737,7 +737,8 @@
 </div>
 
 <script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzs-RBpFOLkgysn2mnmISN9Qq6pYemmGpDS9G3bvW_sk5tzP6H0L5JMq3alaf3qQC18/exec";
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyXi6M9v0aUVTaWjE_mLq0RrQfY2GoBIgYmcazfmVlagAsKdnmdR5nB53LU7FfmM2BY/exec";
+const FORM_TOKEN = "f6005f411a9a6d02b66f3ad0ae589baad4d92f79306768bb";
 
 let current = 0;
 const TOTAL = 8;
@@ -929,7 +930,8 @@ function collectFormData(codiUsuari) {
     confident_rel:    getChecked("confidente_rel")[0] || "",
     confident_wa:     document.getElementById("confidente_wa")?.value || "",
     consentiment:     getChecked("consentimiento")[0] || "",
-    fotos_count:      fotosBase64.length
+    fotos_count:      fotosBase64.length,
+    _token:           FORM_TOKEN
   };
 }
 
@@ -962,7 +964,7 @@ async function submitForm() {
     // 2a crida: envia les fotos si n'hi ha (no-cors)
     if (fotosBase64.length > 0) {
       setLoading(true, "Pujant les fotos...");
-      const fotosData = { codi_usuari: codiUsuari };
+      const fotosData = { codi_usuari: codiUsuari, _token: FORM_TOKEN };
       fotosBase64.forEach((b64, i) => { fotosData[`foto${i+1}`] = b64; });
       await fetch(APPS_SCRIPT_URL, {
         method: "POST",
